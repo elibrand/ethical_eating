@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>FAQs</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for query in queries %}
+            <ul class="list-group">
+              <li class="list-group-item active">{{ query.question }}</li>
+              <li class="list-group-item">{{ query.answer }}<br>
+                  <p style="font-size: 11px;">Find this answer helpful?   <a href="#">yes</a></p>
+              </li>
+            </ul>
+            {% endfor %}
+            <a href="#"  style="margin-top: 25px; width: 200px" class="btn btn-secondary">See More</a>
+        </div>
+        <div class="card-mx-auto col-md-4">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                             <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

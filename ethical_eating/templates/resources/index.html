@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<style>
+     body {
+        background-image: url("{% static 'resources/carrot_lox.jpg' %}");
+        background-color:     #17202a ;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-blend-mode: screen;
+     }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>Jewish Ethical Eating</h1>
+    <div class="row">
+        <div class="col-md-4"> <img style="height: 200px; width: 200px;" src="{% static 'resources/index.png' %}" alt="What is it"></div>
+        <div class="col-md-8"></div>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
+                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
+                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <a href="{% url 'resources:about' %}" class="btn btn-secondary">Read More</a>
+        </div>
+        <div class="col-md-8"> <img style="height: 200px; width: 200px;" src="{% static 'resources/most-important.jpg' %}" alt="Why is it important"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>How to get involved</h4>
+            <div class="col-md-4"> <img style="height: 200px; width: 200px;" src="{% static 'resources/Get_Involved.png' %}" alt="How to get involved"></div>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
+                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
