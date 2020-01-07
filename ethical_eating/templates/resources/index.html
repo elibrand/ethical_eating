@@ -6,7 +6,7 @@
 <style>
      body {
         background-image: url("{% static 'resources/carrot_lox.jpg' %}");
-        background-color:     #17202a ;
+        background-color:   #020202;
         background-repeat: no-repeat;
         background-size: cover;
         background-blend-mode: screen;
@@ -15,11 +15,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-<h1>Jewish Ethical Eating</h1>
+<div class="container text-light">
+    <center>
+        <h1>Jewish Ethical Eating</h1>
+    </center>
     <div class="row">
-        <div class="col-md-4"> <img style="height: 200px; width: 200px;" src="{% static 'resources/index.png' %}" alt="What is it"></div>
-        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <h2>What is It</h2>
+            <img style="height: 200px; width: 200px;" src="{% static 'resources/question.png' %}" alt="Question mark">
+        </div>
+        <div class="col-md-8">
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
                 eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
                 voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
@@ -43,12 +48,17 @@
                 vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                 <a href="{% url 'resources:about' %}" class="btn btn-secondary">Read More</a>
         </div>
-        <div class="col-md-8"> <img style="height: 200px; width: 200px;" src="{% static 'resources/most-important.jpg' %}" alt="Why is it important"></div>
+        <div class="col-md-4">
+            <h2>Why is it important</h2>
+            <img style="height: 200px; width: 200px;" src="{% static 'resources/important.png' %}" alt="Exclamation point">
+        </div>
     </div>
     <div class="row">
+        <div class="col-md-4">
+            <h2>How to get involved</h2>
+            <img style="height: 200px; width: 200px;" src="{% static 'resources/tools.png' %}" alt="Tools">
+        </div>
         <div class="col-md-8">
-            <h4>How to get involved</h4>
-            <div class="col-md-4"> <img style="height: 200px; width: 200px;" src="{% static 'resources/Get_Involved.png' %}" alt="How to get involved"></div>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
                 eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
                 voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione

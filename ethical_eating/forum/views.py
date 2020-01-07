@@ -13,6 +13,7 @@ from django.shortcuts import render, redirect
 def forum(request):
     threads = Thread.objects.all()
     if request.method == 'POST':
+
         form = ThreadForm(request.POST)
         if form.is_valid():
             creator = form.cleaned_data['name']
@@ -26,4 +27,5 @@ def forum(request):
 
 
 def forum_all(request):
-    return render(request, 'forum/forum_all.html')
+    threads = Thread.objects.all()
+    return render(request, 'forum/forum_all.html', {'threads': threads})

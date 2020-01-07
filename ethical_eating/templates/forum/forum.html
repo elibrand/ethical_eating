@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to the forum</h1>
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -12,11 +10,14 @@
                 Created by: {{ thread.creator }}
               </div>
               <div class="card-body">
-                <h5 class="card-title">Subject: {{ thread.text }}</h5>
-                <p class="card-text"></p>
+                <h5 class="card-title">{{ thread.text }}</h5>
+                  {% for comment in thread.comment_set.all %}
+                <p class="card-text">{{ comment.creator }}: {{ comment }}</p>
+                  {% endfor %}
               </div>
             </div>
             {% endfor %}
+            <a href="{% url 'forum:all' %}"  style="margin-top: 25px; width: 200px" class="btn btn-secondary">See All</a>
         </div>
         <div class="card-mx-auto col-md-4">
                     <h3>Create a thread:</h3>
@@ -31,7 +32,7 @@
                             {% endfor %}
                         </ul>
                     {% endif %}
-                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    <button type="submit" class="btn btn-secondary" >Submit</button>
                 </form>
             </div>
         </div>

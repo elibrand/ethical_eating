@@ -1,5 +1,75 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+<style>
+     body {
+        background-color: #27e138;
+     }
+</style>
+{% endblock %}
+
+
 {% block content %}
-<h1>Welcome to the resources</h1>
+<center><h1>Welcome to the resources</h1></center>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Books</h2>
+            <img style="height: 180px; width: 200px;" src="{% static 'resources/Book.png' %}" alt="books">
+        </div>
+        <div class="col-md-8">
+            <h1>Big ol Placeholder</h1>
+            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>And God said: "Behold, I have given you every herb-yielding seed which is upon the face of all the earth,
+                and every tree that has seed-yielding fruit - to you it shall be for food."
+                    Genesis 1:29
+            </h4>
+            <div class="row">
+                <div class="col-md">
+                    <a href="{% url 'resources:bible' %}" class="btn btn-secondary">Bible</a>
+                </div>
+                <div class="col-md">
+                    <a href="{% url 'resources:talmud' %}" class="btn btn-secondary">Talmud</a>
+                </div>
+                <div class="col-md">
+                    <a href="{% url 'resources:rabbis' %}" class="btn btn-secondary">Rabbis</a>
+                </div>
+                <div class="col-md">
+                    <a href="{% url 'resources:thinkers' %}" class="btn btn-secondary">Contemporary thinkers</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2>Sources</h2>
+            <img style="height: 200px; width: 200px;" src="{% static 'resources/file.png' %}" alt="source">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Restaurants</h2>
+            <img style="height: 170px; width: 200px;" src="{% static 'resources/plate.png' %}" alt="place setting">
+        </div>
+        <div class="col-md-8">
+            <h1>Big ol Placeholder</h1>
+            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Big ol Placeholder</h1>
+            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="col-md-4">
+            <h2>Products</h2>
+            <img style="height: 200px; width: 200px;" src="{% static 'resources/box2.png' %}" alt="box">
+        </div>
+    </div>
+</div>
 {% endblock %}
