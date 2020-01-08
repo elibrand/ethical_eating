@@ -5,33 +5,46 @@
 {% block css %}
 <style>
      body {
-        background-color: #27e138;
+        background-color: #abebc6;
      }
 </style>
 {% endblock %}
 
 
 {% block content %}
-<center><h1>Welcome to the resources</h1></center>
+<center><h1 class="nice-font space">Resources</h1></center>
 
-<div class="container">
+<div class="container space">
+    <!--  book section  -->
     <div class="row">
         <div class="col-md-4">
-            <h2>Books</h2>
-            <img style="height: 180px; width: 200px;" src="{% static 'resources/Book.png' %}" alt="books">
+            <h2 class="nice-font">Books</h2>
+            <img style="height: 180px; width: 200px;" src="{% static 'resources/Book.png' %}" alt="books"><br>
+            <a href="{% url 'resources:books' %}" class="btn btn-secondary space">See All</a>
         </div>
         <div class="col-md-8">
-            <h1>Big ol Placeholder</h1>
-            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+            <div class="row">
+                {% for book in books %}
+                <div class="card" style="width: 11rem; margin-right: 10px;">
+                    <img src="{{ book.cover.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">{{ book.author }}</p>
+                        <a href="{{ book.site }}" class="btn btn-primary">Buy</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <div class="row">
+    <!--  source section  -->
+    <div class="row space">
         <div class="col-md-8">
-            <h4>And God said: "Behold, I have given you every herb-yielding seed which is upon the face of all the earth,
-                and every tree that has seed-yielding fruit - to you it shall be for food."
+            <h4 class="bible-font">And God said: "Behold, I have given you every herb-yielding seed which is upon the face of all the earth,
+                and every tree that has seed-yielding fruit - to you it shall be for food."<br>
                     Genesis 1:29
             </h4>
-            <div class="row">
+            <div style="margin-top: 40px;" class="row">
                 <div class="col-md">
                     <a href="{% url 'resources:bible' %}" class="btn btn-secondary">Bible</a>
                 </div>
@@ -47,27 +60,44 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h2>Sources</h2>
+            <h2 class="nice-font">Sources</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/file.png' %}" alt="source">
         </div>
     </div>
-    <div class="row">
+    <div class="row space">
         <div class="col-md-4">
-            <h2>Restaurants</h2>
+            <!--  restaurant section  -->
+            <h2 class="nice-font">Restaurants</h2>
             <img style="height: 170px; width: 200px;" src="{% static 'resources/plate.png' %}" alt="place setting">
         </div>
         <div class="col-md-8">
-            <h1>Big ol Placeholder</h1>
-            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+            <div class="card text-center">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    {% for restaurant in restaurants %}
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">Location: {{ restaurant.address }} {{ restaurant.city }} {{ restaurant.country }}</p>
+                    <a href="{{ restaurant.site }}" class="btn btn-primary">Visit Site</a>
+                    <a href="{% url 'resources:reviews' restaurant.id %}" class="btn btn-primary">Reviews</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Rating:
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'resources:food' %}" class="btn btn-secondary">See All</a>
         </div>
     </div>
-    <div class="row">
+    <!--  product section  -->
+    <div class="row space">
         <div class="col-md-8">
             <h1>Big ol Placeholder</h1>
             <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
         </div>
         <div class="col-md-4">
-            <h2>Products</h2>
+            <h2 class="nice-font">Products</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/box2.png' %}" alt="box">
         </div>
     </div>

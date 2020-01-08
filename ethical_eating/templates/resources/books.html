@@ -1,1 +1,27 @@
 {% extends 'base.html' %}
+
+{% block css %}
+<style>
+     body {
+        background-color: #abebc6;
+     }
+</style>
+{% endblock %}
+
+{% block content %}
+<center><h1 class="nice-font space">Books</h1></center>
+<div class="container space">
+    <div class="row">
+        {% for book in books %}
+        <div class="card" style="width: 11rem; margin-right: 10px; margin-bottom: 10px;">
+            <img src="{{ book.cover.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <p class="card-text">{{ book.author }}</p>
+                <a href="{{ book.site }}" class="btn btn-primary">Buy</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

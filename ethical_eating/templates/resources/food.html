@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center><h1 class="nice-font space">Restaurants</h1></center>
+{% for restaurant in restaurants %}
+<div class="card text-center space">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ restaurant.name }}</h5>
+        <p class="card-text">Location: {{ restaurant.address }} {{ restaurant.city }} {{ restaurant.country }}</p>
+        <a href="{{ restaurant.site }}" class="btn btn-primary">Visit Site</a>
+        <a href="{% url 'resources:reviews' restaurant.id %}" class="btn btn-primary">Reviews</a>
+    </div>
+    <div class="card-footer text-muted">
+        {% if restaurant.get_avg %}
+        Rating: {{ restaurant.get_avg }}
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

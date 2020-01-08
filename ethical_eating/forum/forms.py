@@ -14,6 +14,6 @@ class CommentForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control w-50'
     }))
-    comment = forms.CharField(widget=forms.Textarea(attrs={
+    comment = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control w-50'
     }))

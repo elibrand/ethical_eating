@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center><h1 class="nice-font space">Restaurants</h1></center>
+<div class="container space">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card text-center space">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                    <p class="card-text">Location: {{ restaurant.address }} {{ restaurant.city }} {{ restaurant.country }}</p>
+                    <a href="{{ restaurant.site }}" class="btn btn-primary">Visit Site</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {% if restaurant.get_avg != None %}
+                    Rating: {{ restaurant.get_avg }}
+                    {% endfor %}
+                </div>
+            </div>
+            <h3 class="space">Reviews</h3>
+            {% for review in restaurant.reviews.all %}
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">By: {{ review.author }}</div>
+                    <div class="card-body">
+                    <h5 class="card-title">Rating: {{ review.rate }}</h5>
+                    <p class="card-text">{{ review.text }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card-mx-auto col-md-4">
+            <h3>Write a Review:</h3>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                             <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <button type="submit" class="btn btn-secondary" >Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

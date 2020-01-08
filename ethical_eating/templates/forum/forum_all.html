@@ -3,14 +3,20 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col">
             {% for thread in threads %}
-            <div class="card">
+            <div style="margin-bottom: 40px;" class="card">
               <div class="card-header">
                 Created by: {{ thread.creator }}
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ thread.text }}</h5>
+                  <form action="{% url 'forum:get_comment' thread.id %}" method="post">
+                      {% csrf_token %}
+                    {{ cform.as_p }}
+                    <button type="submit" class="btn btn-secondary" >Submit</button>
+                  </form><br>
+                  <h4>Comments:</h4>
                   {% for comment in thread.comment_set.all %}
                 <p class="card-text">{{ comment.creator }}: {{ comment }}</p>
                   {% endfor %}

@@ -1,28 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<center><h1 class="nice-font space">Forum</h1></center>
+<div class="container space">
     <div class="row">
         <div class="col-md-8">
-            {% for thread in threads %}
-            <div class="card">
+            {% for thread in last_five %}
+            <div style="margin-bottom: 40px;" class="card">
               <div class="card-header">
                 Created by: {{ thread.creator }}
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ thread.text }}</h5>
+                  <form action="{% url 'forum:get_comment' thread.id %}" method="post">
+                      {% csrf_token %}
+                    {{ cform.as_p }}
+                    <button type="submit" class="btn btn-secondary" >Submit</button>
+                  </form><br>
+                  <h4>Comments:</h4>
                   {% for comment in thread.comment_set.all %}
-                <p class="card-text">{{ comment.creator }}: {{ comment }}</p>
+                  <p class="card-text">{{ comment.creator }}: {{ comment }}</p>
                   {% endfor %}
               </div>
             </div>
             {% endfor %}
-            <a href="{% url 'forum:all' %}"  style="margin-top: 25px; width: 200px" class="btn btn-secondary">See All</a>
+            <a href="{% url 'forum:all' %}"  style="margin-top: 25px; margin-bottom: 45px; width: 200px" class="btn btn-secondary">See More</a>
         </div>
         <div class="card-mx-auto col-md-4">
-                    <h3>Create a thread:</h3>
+            <h3>Create a thread:</h3>
             <div class="card-body">
-                <form method="post">
+                <form action="{% url 'forum:forum' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     {% if messages %}
@@ -35,6 +42,7 @@
                     <button type="submit" class="btn btn-secondary" >Submit</button>
                 </form>
             </div>
+            <a href="{% url 'forum:all' %}"  style="margin-top: 25px; width: 200px" class="btn btn-secondary">See All</a>
         </div>
     </div>
 </div>

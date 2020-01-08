@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>FAQs</h1>
-<div class="container">
+<center><h1 class="nice-font space">FAQs</h1></center>
+<div class="container space">
     <div class="row">
         <div class="col-md-8">
             {% for query in queries %}
@@ -13,7 +13,6 @@
               </li>
             </ul>
             {% endfor %}
-            <a href="#"  style="margin-top: 25px; width: 200px" class="btn btn-secondary">See More</a>
         </div>
         <div class="card-mx-auto col-md-4">
             <div class="card-body">

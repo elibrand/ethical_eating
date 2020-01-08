@@ -11,17 +11,18 @@
         background-size: cover;
         background-blend-mode: screen;
      }
+     .top-buffer {
+        margin-top: 35px;
+     }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container text-light">
-    <center>
-        <h1>Jewish Ethical Eating</h1>
-    </center>
-    <div class="row">
+    <center><h1 style="color: black;" class="nice-font">Jewish Ethical Eating</h1></center>
+    <div class="row top-buffer">
         <div class="col-md-4">
-            <h2>What is It</h2>
+            <h2 class="nice-font">What is It</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/question.png' %}" alt="Question mark">
         </div>
         <div class="col-md-8">
@@ -36,7 +37,7 @@
             <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row top-buffer">
         <div class="col-md-8">
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
                 eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
@@ -49,13 +50,13 @@
                 <a href="{% url 'resources:about' %}" class="btn btn-secondary">Read More</a>
         </div>
         <div class="col-md-4">
-            <h2>Why is it important</h2>
+            <h2 class="nice-font">Why is it important</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/important.png' %}" alt="Exclamation point">
         </div>
     </div>
-    <div class="row">
+    <div class="row top-buffer">
         <div class="col-md-4">
-            <h2>How to get involved</h2>
+            <h2 class="nice-font">How to get involved</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/tools.png' %}" alt="Tools">
         </div>
         <div class="col-md-8">
