@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="quiz-font" style="color: lime;">{{ congrats }}</h1>
 <center><h1 class="nice-font space">FAQs</h1></center>
 <div class="container space">
     <div class="row">
         <div class="col-md-8">
             {% for query in queries %}
-            <ul class="list-group">
+            <ul style="margin-bottom: 50px;" class="list-group">
               <li class="list-group-item active">{{ query.question }}</li>
               <li class="list-group-item">{{ query.answer }}<br>
                   <p style="font-size: 11px;">Find this answer helpful?   <a href="#">yes</a></p>

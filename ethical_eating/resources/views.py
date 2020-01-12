@@ -1,13 +1,60 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from resources.models import Questions, Book, Restaurant, Review
-from resources.forms import QuestionForm, ReviewForm
+from resources.forms import QuestionForm, ReviewForm, QuizForm
 
 
 def index(request):
-    return render(request, 'resources/index.html')
+    if request.method == 'POST':
+        form = QuizForm(request.POST)
+        if form.is_valid():
+            congrats = ''
+            score = sum([q.points for q in form.cleaned_data.values()])
+            print(score)
+            if 60 < score < 69:
+                messages.info(request,
+                              message='Congratulations, you are a chosen meat-lover. Feel free to read more about us')
+                return redirect(reverse('resources:about'))
+            elif 50 <= score < 60:
+                messages.info(request,
+                              message='Congratulations, you are a mindful meat-eater. Check out our forum for more '
+                                      'insight')
+                return redirect(reverse('forum:forum'))
+            elif 40 <= score < 50:
+                messages.info(request,
+                              message='Congratulations, you are an ethical omnivore. Check out our forum for more '
+                                      'insight')
+                return redirect(reverse('resources:about'), {'congrats': congrats})
+            elif 35 <= score < 40:
+                messages.info(request,
+                              message='Congratulations, you are an enlightened pescatarian. Check out our FAQs for '
+                                      'more insight')
+                return redirect(reverse('resources:questions'), {'congrats': congrats})
+            elif 30 <= score < 35:
+                messages.info(request,
+                             message='Congratulations, you are a jewy vegetarian. Check out all the products and '
+                                     'restaurants available ')
+                return redirect(reverse('resources:about'), {'congrats': congrats})
+            # change to register page in user app once it exists
+            elif 20 <= score < 30:
+                messages.info(request,
+                              message='Congratulations, you are a holy vegan. Feel free to register if you should like')
+                return redirect(reverse('resources:about'), {'congrats': congrats})
+            print(congrats)
+            # 60 - 68 > chosen meat-lover
+            # 50 - 60 > mindful meat-eater
+            # 40 - 50 > ethical omnivore
+            # 35 - 40 > enlightened pescatarian
+            # 30 - 35 > jewy vegetarian
+            # 20 - 30 > holy vegan
+
+    else:
+        form = QuizForm()
+    return render(request, 'resources/index.html', {'form': form})
 
 
 def questions(request):

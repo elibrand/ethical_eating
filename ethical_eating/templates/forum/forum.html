@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="quiz-font" style="color: lime;">{% if messages %}{% for m in messages %}{{ m }}{% endfor %}{% endif %}</h1>
 <center><h1 class="nice-font space">Forum</h1></center>
 <div class="container space">
     <div class="row">
@@ -32,10 +33,7 @@
                 <form action="{% url 'forum:forum' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    {% if messages %}
                         <ul class="messages">
-                            {% for message in messages %}
-                             <li>{{ message }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}

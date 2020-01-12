@@ -12,6 +12,7 @@
 
 
 {% block content %}
+<h1 class="quiz-font" style="color: lime;">{% if messages %}{% for m in messages %}{{ m }}{% endfor %}{% endif %}</h1>
 <center><h1 class="nice-font space">Resources</h1></center>
 
 <div class="container space">
@@ -83,7 +84,9 @@
                     <a href="{% url 'resources:reviews' restaurant.id %}" class="btn btn-primary">Reviews</a>
                 </div>
                 <div class="card-footer text-muted">
-                    Rating:
+                     {% if restaurant.get_avg %}
+                        Rating: {{ restaurant.get_avg }}
+                     {% endif %}
                 </div>
                 {% endfor %}
             </div>

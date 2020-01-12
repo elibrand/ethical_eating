@@ -52,4 +52,23 @@ class Review(models.Model):
         return f'{self.text}'
 
 
+class Question(models.Model):
+    text = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f'{self.text}'
+
+
+class Answer(models.Model):
+    choice = models.CharField(max_length=500)
+    points = models.IntegerField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')
+
+    def __str__(self):
+        return f'{self.choice}'
+
+
+
+
+
 

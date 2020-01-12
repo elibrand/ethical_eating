@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h1>perv</h1>
+{% load static %}
+
+{% block css %}
+<style>
+     body {
+        background-image: url("{% static 'resources/eggplant.png' %}");
+        background-color:   #020202;
+        background-repeat: no-repeat;
+        background-size: cover;
+     }
+</style>
 {% endblock %}
