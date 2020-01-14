@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from forum.forms import ThreadForm, CommentForm
@@ -42,7 +43,7 @@ def get_comment(request, pk):
             thread = Thread.objects.get(pk=pk)
             Comment(text=text, thread=thread, creator=creator).save()
             messages.success(request, 'Thanks for commenting, dude')
-    return redirect(reverse('forum:all'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 

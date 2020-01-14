@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+<style>
+   body {
+        background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(170, 170, 170, 0.8)), url("{% static 'resources/avocado.jpg' %}");
+        background-color: #abebc6;
+     }
+</style>
+{% endblock %}
+
 {% block content %}
-<h1 class="quiz-font" style="color: lime;">{{ congrats }}</h1>
-<center><h1 class="nice-font space">FAQs</h1></center>
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
+<center><h1 class="nice-font space ledge">FAQs</h1></center>
 <div class="container space">
     <div class="row">
         <div class="col-md-8">

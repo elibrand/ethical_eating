@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Dosis|Girassol|Nunito+Sans&display=swap" rel="stylesheet">
     <style>
-        .nice-font {
+        .nice-font, label {
             font-family: 'Dosis', sans-serif;
+        }
+        label {
+            font-size: 25px;
         }
         .bible-font {
             font-family: 'Girassol', cursive;
@@ -16,7 +19,7 @@
             font-family: 'Nunito Sans', sans-serif;
         }
         .card {
-            background-color: rgba(245, 245, 245, 0.4);
+            background-color: rgba(245, 245, 245, 0.7);
         }
         .card-header, .card-footer {
             opacity: 1;
@@ -24,7 +27,76 @@
         .space {
             margin-top: 90px;
         }
-    </style>
+        .gray {
+            color: rgba(255,255,255,.5);
+        }
+
+        #meter {
+          width: 420px;
+          height: 200px;
+          position: static;
+          top: 30%;
+          left: 50%;
+          overflow: hidden;
+          text-align: center;
+          transform: translate(-50%, -50%);
+        }
+
+        .gauge-a {
+          z-index: 1;
+          position: absolute;
+          background-color: rgba(255,255,255,.2);
+          width: 400px;
+          height: 200px;
+          top: 0%;
+          border-radius: 250px 250px 0px 0px;
+        }
+
+        .gauge-b {
+          z-index: 3;
+          position: absolute;
+          background-color: #222;
+          width: 250px;
+          height: 125px;
+          top: 75px;
+          margin-left: 75px;
+          margin-right: auto;
+          border-radius: 250px 250px 0px 0px;
+        }
+
+        .gauge-c {
+          z-index: 2;
+          position: absolute;
+          background-color: #5664F9;
+          width: 400px;
+          height: 200px;
+          top: 200px;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 0px 0px 200px 200px;
+          transform-origin: center top;
+          transition: all 1.3s ease-in-out;
+        }
+
+        #meter:hover .gauge-c {  transform:rotate(.5turn);
+        }
+
+        #meter:hover .gauge-data { color: rgba(255,255,255,1); }
+
+        .gauge-data {
+          z-index: 4;
+          color: rgba(255,255,255,.2);
+          font-size: 1.5em;
+          line-height: 25px;
+          position: absolute;
+          width: 400px;
+          height: 200px;
+          top: 90px;
+          margin-left: auto;
+          margin-right: auto;
+          transition: all 1s ease-out;
+        }
+</style>
     {% block css %}
     {% endblock %}
 
@@ -32,9 +104,9 @@
 <body>
     {% block navbar %}
     {% load static %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'resources:perv' %}">
-            <img src="{% static 'resources/eggplant.png' %}" width="30" height="30" alt="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'resources/kosher_vegan.png' %}" width="55" height="30" alt="symbols">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,8 +115,39 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'resources:index' %}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="{% url 'resources:questions' %}">FAQs</a>
-                <a class="nav-item nav-link" href="{% url 'resources:resources' %}">Resources</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Resources
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item gray" href="{% url 'resources:books' %}">Books</a>
+                        <a class="dropdown-item gray" href="{% url 'resources:resources' %}#sources">Sources</a>
+                        <a class="dropdown-item gray" href="{% url 'resources:food' %}">Restaurants</a>
+                        <a class="dropdown-item gray" href="{% url 'resources:products' %}">Products</a>
+                    <div class="dropdown-divider gray"></div>
+                        <a class="dropdown-item gray" href="{% url 'resources:resources' %}">All</a>
+                    </div>
+                </li>
                 <a class="nav-item nav-link" href="{% url 'forum:forum' %}">Forum</a>
+                <a class="nav-item nav-link" href="{% url 'resources:index' %}#quiz_title">Quiz</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        About
+                    </a>
+                    <div class="dropdown-menu bg-dark " aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item gray" href="{% url 'resources:about' %}#what">What is it</a>
+                        <a class="dropdown-item gray" href="{% url 'resources:about' %}#why">Why is it important</a>
+                        <a class="dropdown-item gray" href="{% url 'resources:about' %}#how">How to get involved</a>
+                    <div class="dropdown-divider gray"></div>
+                        <a class="dropdown-item gray" href="{% url 'resources:about' %}">Main</a>
+                    </div>
+                </li>
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'users:profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout ({{ user.username }})</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -56,11 +159,14 @@
     {% block footer %}
     <footer>
         <div class="footer-copyright text-center py-3 fixed-bottom text-light">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/">JEE</a>
+            <a href="https://github.com/elibrand">JEE</a>
         </div>
      </footer>
     {% endblock %}
-
+    <script>
+        document.getElementById("meter").style.visibility = "hidden";
+        document.getElementById("booton").addEventListener("submit", document.getElementById("meter").style.visibility = "visible");
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

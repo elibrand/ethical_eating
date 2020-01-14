@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<style>
+   body {
+        background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(170, 170, 170, 0.8)), url("{% static 'resources/avocado.jpg' %}");
+        background-color: #abebc6;
+     }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
+<center>
+    <h1 class="nice-font space">Login</h1>
+    <div class="card space" style="width: 25rem;">
+      <img src="{% static 'users/kosher_vegan.png' %}" class="card-img-top" style="width: 50%; margin: auto; margin-top: 30px;" alt="...">
+      <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-secondary" >Login</button>
+          </form>
+      </div>
+    </div>
+
+</center>
+{% endblock %}

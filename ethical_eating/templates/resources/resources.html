@@ -5,14 +5,20 @@
 {% block css %}
 <style>
      body {
+        background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(170, 170, 170, 0.8)), url("{% static 'resources/avocado.jpg' %}");
         background-color: #abebc6;
+     }
+     h2 {
+        margin-left: 50px;
      }
 </style>
 {% endblock %}
 
 
 {% block content %}
-<h1 class="quiz-font" style="color: lime;">{% if messages %}{% for m in messages %}{{ m }}{% endfor %}{% endif %}</h1>
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
 <center><h1 class="nice-font space">Resources</h1></center>
 
 <div class="container space">
@@ -39,7 +45,7 @@
         </div>
     </div>
     <!--  source section  -->
-    <div class="row space">
+    <div id="sources" class="row space">
         <div class="col-md-8">
             <h4 class="bible-font">And God said: "Behold, I have given you every herb-yielding seed which is upon the face of all the earth,
                 and every tree that has seed-yielding fruit - to you it shall be for food."<br>
@@ -96,8 +102,16 @@
     <!--  product section  -->
     <div class="row space">
         <div class="col-md-8">
-            <h1>Big ol Placeholder</h1>
-            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+            {% for product in products %}
+                <div class="card" style="width: 11rem; margin-right: 10px;">
+                    <img src="{{ product.pic.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product }}</h5>
+                        <a href="{{ product.site }}" class="btn btn-primary">Website</a>
+                    </div>
+                </div>
+                {% endfor %}
+            <a href="{% url 'resources:products' %}" class="btn btn-secondary">See All</a>
         </div>
         <div class="col-md-4">
             <h2 class="nice-font">Products</h2>

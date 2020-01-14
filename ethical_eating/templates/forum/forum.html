@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css %}
+<style>
+     body {
+        background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(170, 170, 170, 0.8)), url("{% static 'resources/avocado.jpg' %}");
+        background-color: #abebc6;
+     }
+</style>
+{% endblock %}
+
+
 {% block content %}
-<h1 class="quiz-font" style="color: lime;">{% if messages %}{% for m in messages %}{{ m }}{% endfor %}{% endif %}</h1>
-<center><h1 class="nice-font space">Forum</h1></center>
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
+<div id="meter" class="container">
+  <div class="gauge-a"></div>
+  <div class="gauge-b"></div>
+  <div class="gauge-c"></div>
+  <div class="gauge-data">
+    <h1 id="percent">binky</h1>
+  </div>
+</div>
+<center><h1 class="nice-font space ledge">Forum</h1></center>
 <div class="container space">
     <div class="row">
         <div class="col-md-8">
@@ -28,15 +50,11 @@
             <a href="{% url 'forum:all' %}"  style="margin-top: 25px; margin-bottom: 45px; width: 200px" class="btn btn-secondary">See More</a>
         </div>
         <div class="card-mx-auto col-md-4">
-            <h3>Create a thread:</h3>
+            <h2 class="ledge nice-font">Create a thread:</h2>
             <div class="card-body">
                 <form action="{% url 'forum:forum' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                        <ul class="messages">
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
                     <button type="submit" class="btn btn-secondary" >Submit</button>
                 </form>
             </div>

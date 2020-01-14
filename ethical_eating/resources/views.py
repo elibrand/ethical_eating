@@ -4,8 +4,9 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from resources.models import Questions, Book, Restaurant, Review
+from resources.models import Questions, Book, Restaurant, Review, Product
 from resources.forms import QuestionForm, ReviewForm, QuizForm
+from resources.repositories import bible_sources
 
 
 def index(request):
@@ -15,7 +16,7 @@ def index(request):
             congrats = ''
             score = sum([q.points for q in form.cleaned_data.values()])
             print(score)
-            if 60 < score < 69:
+            if 60 <= score < 79:
                 messages.info(request,
                               message='Congratulations, you are a chosen meat-lover. Feel free to read more about us')
                 return redirect(reverse('resources:about'))
@@ -28,29 +29,28 @@ def index(request):
                 messages.info(request,
                               message='Congratulations, you are an ethical omnivore. Check out our forum for more '
                                       'insight')
-                return redirect(reverse('resources:about'), {'congrats': congrats})
+                return redirect(reverse('forum:forum'))
             elif 35 <= score < 40:
                 messages.info(request,
                               message='Congratulations, you are an enlightened pescatarian. Check out our FAQs for '
                                       'more insight')
-                return redirect(reverse('resources:questions'), {'congrats': congrats})
+                return redirect(reverse('resources:questions'))
             elif 30 <= score < 35:
                 messages.info(request,
-                             message='Congratulations, you are a jewy vegetarian. Check out all the products and '
-                                     'restaurants available ')
-                return redirect(reverse('resources:about'), {'congrats': congrats})
-            # change to register page in user app once it exists
-            elif 20 <= score < 30:
+                              message='Congratulations, you are a jewy vegetarian. Check out all the products and '
+                                      'restaurants available ')
+                return redirect(reverse('resources:about'))
+            elif 19 <= score < 30:
                 messages.info(request,
                               message='Congratulations, you are a holy vegan. Feel free to register if you should like')
-                return redirect(reverse('resources:about'), {'congrats': congrats})
+                return redirect(reverse('users:register'))
             print(congrats)
-            # 60 - 68 > chosen meat-lover
-            # 50 - 60 > mindful meat-eater
-            # 40 - 50 > ethical omnivore
-            # 35 - 40 > enlightened pescatarian
-            # 30 - 35 > jewy vegetarian
-            # 20 - 30 > holy vegan
+            # 60 - 78 > chosen meat-lover -> .container:hover .gauge-c {  transform:rotate(.08turn);
+            # 50 - 60 > mindful meat-eater -> .container:hover .gauge-c {  transform:rotate(.17turn);
+            # 40 - 50 > ethical omnivore -> .container:hover .gauge-c {  transform:rotate(.25turn);
+            # 35 - 40 > enlightened pescatarian -> .container:hover .gauge-c {  transform:rotate(.33turn);
+            # 30 - 35 > jewy vegetarian -> .container:hover .gauge-c {  transform:rotate(.42turn);
+            # 19 - 30 > holy vegan -> .container:hover .gauge-c {  transform:rotate(.5turn);
 
     else:
         form = QuizForm()
@@ -75,9 +75,10 @@ def questions(request):
 
 
 def resources(request):
-    books = Book.objects.all().order_by('-id')[:3]
+    books = Book.objects.all().order_by('-id')[:4]
     restaurants = Restaurant.objects.all().order_by('-id')[:1]
-    return render(request, 'resources/resources.html', {'books': books, 'restaurants': restaurants})
+    products = Product.objects.all().order_by('-id')[:4]
+    return render(request, 'resources/resources.html', {'books': books, 'restaurants': restaurants, 'products': products})
 
 
 def books(request):
@@ -106,11 +107,12 @@ def reviews(request, pk):
 
 
 def products(request):
-    return render(request, 'resources/products.html')
+    products = Product.objects.all()
+    return render(request, 'resources/products.html', {'products': products})
 
 
 def bible(request):
-    return render(request, 'resources/bible.html')
+    return render(request, 'resources/bible.html', {'bible': bible_sources})
 
 
 def talmud(request):
@@ -128,6 +130,3 @@ def thinkers(request):
 def about(request):
     return render(request, 'resources/about.html')
 
-
-def perv(request):
-    return render(request, 'resources/perv.html')

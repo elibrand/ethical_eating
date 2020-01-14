@@ -5,7 +5,7 @@ from resources.models import Question, Questions
 
 class QuestionForm(forms.Form):
     ask = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'form-control w-50'
+        'class': 'form-control w-100'
     }))
 
 
@@ -23,7 +23,7 @@ class ReviewForm(forms.Form):
 
 
 class QuizForm(forms.Form):
-    q = Question.objects.all()
+    q = Question.objects.all().order_by('id')
     q1 = forms.ModelChoiceField(label=q[0].text,
                                 queryset=q[0].choices.all(),
                                 widget=forms.RadioSelect,
@@ -54,5 +54,9 @@ class QuizForm(forms.Form):
                                 empty_label=None)
     q8 = forms.ModelChoiceField(label=q[7].text,
                                 queryset=q[7].choices.all(),
+                                widget=forms.RadioSelect,
+                                empty_label=None)
+    q9 = forms.ModelChoiceField(label=q[8].text,
+                                queryset=q[8].choices.all(),
                                 widget=forms.RadioSelect,
                                 empty_label=None)

@@ -19,7 +19,6 @@ urlpatterns = [
     path('resources/sources/rabbis', views.rabbis, name='rabbis'),
     path('resources/sources/thinkers', views.thinkers, name='thinkers'),
     path('about/', views.about, name='about'),
-    path('perv/', views.perv, name='perv'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

@@ -4,70 +4,159 @@
 
 {% block css %}
 <style>
-     body {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'resources/carrot_lox.jpg' %}");
-        background-color:   #020202;
-        background-repeat: no-repeat;
-        background-size: cover;
+   body {
+        background-color: #abebc6;
      }
-     .top-buffer {
-        margin-top: 35px;
+   li {
+        list-style-type: none;
      }
 </style>
 {% endblock %}
 
 {% block content %}
-<h1 class="quiz-font" style="color: lime;">{% if messages %}{{ messages }}{% endif %}</h1>
-<div class="container text-light">
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
+<div class="container" style="font-size: 20px; margin-bottom: 30px;">
     <center><h1 class="nice-font space">About Jewish Ethical Eating</h1></center>
-    <div class="row space">
+    <div id="what" class="row space">
         <div class="col-md-4">
             <h2 class="nice-font">What is It</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/question.png' %}" alt="Question mark">
         </div>
         <div class="col-md-8">
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
-                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-            <a href="{% url 'resources:about' %}" class="btn btn-secondary">Learn More</a>
+            <p>
+                Vegetarianism is not traditionally a component of mainstream Judaism. Judaism is instead centered around
+                Kosher rituals for the consumption of animal products. There are, however, arguments for the integration
+                of vegetarianism into Judaism. Genesis 1:29 states "And God said: Behold, I have given you every herb
+                yielding seed which is upon the face of all the earth, and every tree that has seed-yielding fruit—to
+                you it shall be for food." Many scholars see the Torah as thereby pointing to vegetarianism as an ideal,
+                as Adam and Eve did not partake of the flesh of animals as all humans and animals were originally
+                commanded by God to only eat plants. According to some interpretations, God's original plan was for
+                mankind to be vegetarian, and God only later gave permission for man to eat meat in a covenant with Noah
+                (Genesis 9:1–17) as a temporary concession because of Man's weak nature. This concessionary view of
+                meat-consumption is based on the scriptural analysis of several Rishonim.
+            </p>
+            <p>
+                The Torah gives precise details on how animals are to be sacrificed and slaughtered (shechita).
+                According to Rabbis Shlomo Ephraim Luntschitz and Abraham Isaac Kook the complexity of these laws were
+                intended to discourage the consumption of meat. Kashrut may also be designed to discourage killing
+                living beings.
+            </p>
+            <p>
+                Some writers assert that the Jewish prophet Isaiah was a vegetarian, on the basis of passages in the
+                Book of Isaiah that extol nonviolence and reverence for life, such as Isaiah 1:11, 11:6-9, 65:25, and
+                66:3. Some of these writers refer to "the vegetarian Isaiah", "the notorious vegetarian Isaiah", and
+                "Isaiah, the vegetarian prophet". Critics of this view argue that none of the Biblical verses in
+                question refer to a human diet: they either condemn certain animal sacrifices, or else prophesize
+                that carnivorous animals will become herbivorous at the end of days.
+            </p>
+            <p>
+                According to Daniel 1:8-16, the pious Jewish youths Daniel, Shadrach, Meshach, and Abednego refused
+                to eat food or drink wine served in Nebuchadnezzar's palace. At Daniel's request, the four boys were
+                subjected to a test; they were fed only vegetables and water for ten days. At the end of the ten days,
+                the four boys were in better condition than the other boys who ate the king's food.[13] The youths chose
+                to eat this food because the king's food was non-kosher, not because the king's food was non-vegan.
+            </p>
+            <p>
+                A number of ancient Jewish sects, including early Karaite sects, regarded the eating of meat as
+                prohibited as long as Zion was in ruins and Israel in exile.
+            </p>
+            <p>
+                A number of medieval scholars of Judaism, such as Joseph Albo and Isaac Arama, regard vegetarianism
+                as a moral ideal, not out of a concern for animal welfare per se but out of a concern for the moral
+                character of the slaughterer. Rabbeinu Asher ben Meshullam was said to have never tasted meat.
+            </p>
         </div>
     </div>
-    <div class="row space">
+    <div id="why" class="row space">
         <div class="col-md-8">
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
-                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                <a href="{% url 'resources:about' %}" class="btn btn-secondary">Read More</a>
+            <p>
+                There are several religious and philosophical arguments used by modern Jewish vegetarians regarding the
+                ethics of eating meat. According to some, vegetarianism is consistent with the sacred teachings and
+                highest ideals of Judaism, including compassion, health, life, conservation of resources, tzedakah,
+                kashrut, peace, and justice. In contrast, the mass production and consumption of meat and other animal
+                products contradicts many Jewish values and teachings, gravely harming people, animals, communities, and
+                the environment.
+            </p>
+            <p>
+                One mitzvah cited by vegetarians is tza'ar ba'alei hayyim; the injunction not to cause "pain to living
+                creatures." The laws of shechita are meant to prevent the suffering of animals. However, factory farming
+                and high-speed mechanized kosher slaughterhouses have been criticized for failing to meet the essence of
+                shechita. Jonathan Safran Foer narrated the short documentary film If This Is Kosher..., which records
+                what he considers abuses within the kosher meat industry.
+            </p>
+            <p>
+                Another mitzvah often cited by Jewish vegetarians is bal tashchit; the law which prohibits waste. They
+                suggest that an omnivorous diet is wasteful, since it uses 5 times more grain, 10 times more water, 15
+                times more land and 20 times more energy when compared to a vegan diet.
+            </p>
+            <p>
+                Some Jewish vegetarians also stress the commandment to maintain one's health and not harm oneself
+                (venishmartem me'od lenafshoteichem), and point to research indicating that following a vegetarian diet
+                promotes better health. Jewish vegetarians have also argued for environmental vegetarianism, pointing
+                out that global warming, hunger and the depletion of natural resources can be lessened by a global shift
+                to a vegetarian or vegan diet.
+            </p>
         </div>
         <div class="col-md-4">
             <h2 class="nice-font">Why is it important</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/important.png' %}" alt="Exclamation point">
         </div>
     </div>
-    <div class="row space">
+    <div id="how" class="row space">
         <div class="col-md-4">
             <h2 class="nice-font">How to get involved</h2>
             <img style="height: 200px; width: 200px;" src="{% static 'resources/tools.png' %}" alt="Tools">
         </div>
         <div class="col-md-8">
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
-                enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            <h5>A number of groups promote Jewish vegetarianism:</h5><br>
+            <ul>
+                <li>
+                    <a href="https://www.jewishveg.org/">Jewish Veg</a> was founded by Jonathan Wolf as Jewish
+                    Vegetarians of North America (JVNA) in 1975 to promote Jewish vegetarianism. JVNA changed its name
+                    to Jewish Veg in 2015. The organization has been noted for its 2007 film A Sacred Duty and for
+                    sponsoring university lecture tours by figures including Ori Shavit.
+                </li><br>
+                <li><a href="https://www.shamayim.us/">SHAMAYIM</a>: Jewish Animal Advocacy, founded and led by Rabbi
+                    Dr. Shmuly Yanklowitz, promotes a vegan diet in the Jewish community through animal welfare
+                    activism, kosher veganism, and Jewish spirituality. Prior to 2019, it was known as the Shamayim
+                    V'Aretz Institute.
+                </li><br>
+                <li>
+                    The <a href="https://www.jvs.org.uk/">Jewish Vegetarian Society</a> (JVS) was co-founded (briefly as
+                    the Jewish Vegetarian and Natural Health Society, before the name was abbreviated) by Vivien and
+                    Philip Pick in the 1960s with the aim of promoting a kinder society without killing animals for
+                    food. Philip Pick was the first chairman of the organisation, with Maurice Norman Lester the first
+                    vice chairman and his wife Carole Lester its first secretary.
+                </li><br>
+                <li>
+                    <a href="http://www.amirim-home.co.il/Amirim/index.asp?DBID=1&LNGID=1">Amirim</a>, an Israeli
+                    vegetarian moshav (village), was founded in 1958. The founders of Amirim were motivated to create a
+                    vegetarian village because of their love for animals and concern for animal rights, as well as for
+                    health reasons. Both religious and non-religious families live at Amirim.
+                </li><br>
+                <li>
+                    The <a href="https://chai-online.org/">"Concern for Helping Animals in Israel (CHAI)"</a> animal
+                welfare organization promotes Jewish vegetarianism; CHAI's building project is named the Isaac Bashevis
+                Singer Humane Education Center.
+                </li><br>
+                <li>
+                    <a href="https://www.behemla.org.il/">Behemla</a> is a Haredi organization that advocates against
+                    animal cruelty and promotes veganism.
+                </li><br>
+                <li>
+                    <a href="https://animals-now.org/en/">Animals</a> is an Israeli animal rights organization that
+                    promotes Jewish vegetarianism on their website and has been described as a Jewish vegetarian
+                    organization. The group was known as Anonymous for Animal Rights from its founding in 1994 until
+                    2018.
+                </li><br>
+                <li>
+                    <a href="https://vegan-friendly.co.il/">Vegan Friendly</a> is an organization in Tel Aviv that works
+                    to make veganism mainstream, organizes an annual "Vegan Congress," and promotes the vegan
+                    celebration of Jewish holidays.
+                </li>
+            </ul>
         </div>
     </div>
 </div>
