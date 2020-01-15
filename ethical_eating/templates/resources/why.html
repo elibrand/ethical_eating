@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<style>
+   body {
+        background-image: url("{% static 'resources/institution.jpg' %}");
+        background-color: #000000;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: 90%;
+   }
+</style>
+{% endblock %}

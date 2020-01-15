@@ -130,3 +130,7 @@ def thinkers(request):
 def about(request):
     return render(request, 'resources/about.html')
 
+
+def why(request):
+    return render(request, 'resources/why.html')
+

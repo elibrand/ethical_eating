@@ -5,7 +5,6 @@
 {% block css %}
 <style>
      body {
-        background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(170, 170, 170, 0.8)), url("{% static 'resources/avocado.jpg' %}");
         background-color: #abebc6;
      }
      h2 {
@@ -100,8 +99,9 @@
         </div>
     </div>
     <!--  product section  -->
-    <div class="row space">
+    <div class="row space" style="margin-bottom: 90px;">
         <div class="col-md-8">
+            <div class="row">
             {% for product in products %}
                 <div class="card" style="width: 11rem; margin-right: 10px;">
                     <img src="{{ product.pic.url }}" class="card-img-top" alt="...">
@@ -111,7 +111,12 @@
                     </div>
                 </div>
                 {% endfor %}
-            <a href="{% url 'resources:products' %}" class="btn btn-secondary">See All</a>
+            </div>
+            <div style="margin-top: 40px;" class="row">
+                <div class="col-md">
+                    <a href="{% url 'resources:products' %}" class="btn btn-secondary">See All</a>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <h2 class="nice-font">Products</h2>

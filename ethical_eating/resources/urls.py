@@ -8,6 +8,7 @@ app_name = 'resources'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('why', views.why, name='why'),
     path('questions/', views.questions, name='questions'),
     path('resources/', views.resources, name='resources'),
     path('resources/books/', views.books, name='books'),
