@@ -60,3 +60,5 @@ class QuizForm(forms.Form):
                                 queryset=q[8].choices.all(),
                                 widget=forms.RadioSelect,
                                 empty_label=None)
+
+

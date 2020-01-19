@@ -6,10 +6,13 @@
 <style>
    body {
         background-color: #abebc6;
-     }
+   }
    li {
         list-style-type: none;
-     }
+   }
+   #meter:hover .gauge-c {
+        transform:rotate(.125turn);
+   }
 </style>
 {% endblock %}
 
@@ -17,8 +20,16 @@
 <div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
   {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
 </div>
+<!--<div id="meter" class="container" style="margin-top: 110px;">-->
+<!--  <div class="gauge-a"></div>-->
+<!--  <div class="gauge-b"></div>-->
+<!--  <div class="gauge-c"></div>-->
+<!--  <div class="gauge-data">-->
+<!--    <h5 style="margin-top: 50px;" id="percent">hover for<br> your ethical level</h5>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="container" style="font-size: 20px; margin-bottom: 30px;">
-    <center><h1 class="nice-font space">About Jewish Ethical Eating</h1></center>
+    <center><h1 class="nice-font space title">About Jewish Ethical Eating</h1></center>
     <div id="what" class="row space">
         <div class="col-md-4">
             <h2 class="nice-font">What is It</h2>

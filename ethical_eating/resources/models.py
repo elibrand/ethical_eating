@@ -60,23 +60,6 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-    def get_avg(self):
-        if self.reviews.all():
-            return stat.mean([review.rate for review in self.reviews.all()])
-        else:
-            None
-
-
-class ProductReview(models.Model):
-    rate = models.IntegerField(default=5, validators=[MaxValueValidator(10),
-                                                      MinValueValidator(1)])
-    author = models.CharField(max_length=50)
-    text = models.CharField(max_length=500)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
-
-    def __str__(self):
-        return f'{self.text}'
-
 
 class Question(models.Model):
     text = models.CharField(max_length=500)

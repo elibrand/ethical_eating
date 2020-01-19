@@ -12,8 +12,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="alert alert-success quiz-font" style="font-size: 25px;" role="alert">
+  {% if messages %}{% for m in messages %}{{ m.message }}{% endfor %}{% endif %}
+</div>
+<center><h1 class="nice-font space title">My Profile ({{ user.username }})</h1></center>
+
 <div class="container">
-    <center><h1 class="nice-font space">My Profile ({{ user.username }})</h1></center>
     <div class="row space">
          <div class="col-md-8">
             <div class="list-group">
@@ -25,7 +29,7 @@
               <a href="{% url 'users:trump' %}" class="list-group-item list-group-item-action">What Meat-Eaters Look Like</a>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-bottom: 90px;">
             <div class="card" style="width: 30rem">
                 <div class="card-header">
                     My Info
@@ -36,7 +40,31 @@
                     email: {{ user.email }}<br>
                 </div>
             </div>
+            <div class="card-body">
+                <h3 class="nice-font">BMI Calculator</h3>
+                <button type="button" class="btn btn-secondary" onclick="appear()">Imperial</button>
+                <button type="button" class="btn btn-secondary">Metric</button>
+                <form id ="imperial" method="post">
+                {% csrf_token %}
+                    <h4 class="nice-font">Height:</h4>
+
+                {{ form.as_p }}
+                    <button type="submit" class="btn btn-secondary">Calculate</button>
+                </form>
+            </div>
+            <img style="height: 270px; width: 480px;" src="{% static 'users/bmi_chart.jpeg' %}" alt="chart">
         </div>
     </div>
 </div>
+
+{% block js %}
+<script>
+    document.getElementById("imperial").visibility = "hidden"
+
+    function appear() {
+        alert()
+        document.getElementById("imperial").visibility = "visible"
+    }
+</script>
+{% endblock %}
 {% endblock %}

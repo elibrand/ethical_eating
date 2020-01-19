@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.urls import reverse
 
-from users.forms import RegisterForm, LoginForm
+from users.forms import RegisterForm, LoginForm, BMIForm, cal_height, cal_bmi
 
 
 def register(request):
@@ -53,12 +53,32 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    bmi = ''
+    if request.method == 'POST':
+        form = BMIForm(request.POST)
+        if form.is_valid():
+            feet = form.cleaned_data['feet']
+            print(f'feet:{feet}')
+            inches = form.cleaned_data['inches']
+            print(f'inches:{inches}')
+            inch_height = cal_height(feet, inches)
+            weight = form.cleaned_data['weight']
+
+            meter_height = cal_height(feet, inches) * 0.0254
+            print(f'meter_height:{meter_height}')
+            kg_weight = form.cleaned_data['weight'] * 0.453592
+            print(f'kg_weight:{kg_weight}')
+
+            bmi = cal_bmi(meter_height, kg_weight)
+
+            messages.success(request, f'Your BMI is {bmi}')
+        else:
+            messages.error(request, 'Check your info and try again')
+
+    else:
+        form = BMIForm()
+    return render(request, 'users/profile.html', {'form': form})
 
 
 def trump(request):
     return render(request, 'users/trump.html')
-
-
-
-

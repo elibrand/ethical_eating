@@ -16,7 +16,7 @@ bible_sources = [
     f'{genesis9[3]} Genesis 9 4',
     f'{genesis9[8]} {genesis9[9]} Genesis 9 9-10',
     f'{deut8[6]} {deut8[7]} {deut8[8]} {deut8[9]} Deut. 8 7-10',
-    f'{isaiah11[5]} {isaiah11[6]} {isaiah11[7]} {isaiah11[8]} Isa. 11 6-9',
-    f'{hosea2[19]} Hosea 2 20',
+    f'{isaiah11[5].replace("<i></i>", "")} {isaiah11[6]} {isaiah11[7]} {isaiah11[8]} Isa. 11 6-9',
+    f'{hosea2[19].replace("<i></i>", "")} Hosea 2 20',
 ]
 

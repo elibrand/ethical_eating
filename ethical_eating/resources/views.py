@@ -21,6 +21,7 @@ def index(request):
                               message='Congratulations, you are a chosen meat-lover. Feel free to read more about us')
                 return redirect(reverse('resources:about'))
             elif 50 <= score < 60:
+                turn = '.7turn'
                 messages.info(request,
                               message='Congratulations, you are a mindful meat-eater. Check out our forum for more '
                                       'insight')
@@ -37,8 +38,8 @@ def index(request):
                 return redirect(reverse('resources:questions'))
             elif 30 <= score < 35:
                 messages.info(request,
-                              message='Congratulations, you are a jewy vegetarian. Check out all the products and '
-                                      'restaurants available ')
+                              message='Congratulations, you are a jewy vegetarian. Register if you dare take the next '
+                                      'step')
                 return redirect(reverse('resources:about'))
             elif 19 <= score < 30:
                 messages.info(request,
@@ -69,9 +70,6 @@ def questions(request):
     else:
         form = QuestionForm()
     return render(request, 'resources/questions.html', {'form': form, 'queries': queries})
-
-
-# def helpful(request):
 
 
 def resources(request):
